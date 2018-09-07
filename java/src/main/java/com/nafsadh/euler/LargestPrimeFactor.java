@@ -92,13 +92,23 @@ public class LargestPrimeFactor {
         return maxPrime;
     }
     
+    public static long quickMaxFactorize(long n){
+        long p = 1, f;
+        for (f = 2; f*f <= n; ++f) {
+            while (n% f == 0) {
+                p = f;
+                n /= f;
+            }
+        }
+        return (n > 1) ? n:p;
+    }
+    
     public static void main(String[] args) {
-        LargestPrimeFactor largestPrimeFactor = new LargestPrimeFactor();
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
         for (int a0 = 0; a0 < t; a0++) {
             long n = in.nextLong();
-            System.out.println(largestPrimeFactor.largestPrimeFactorFast(n));
+            System.out.println(quickMaxFactorize(n));
         }
     }
 }
